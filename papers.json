@@ -1,0 +1,202 @@
+[
+  {
+    "id": "llms-mdp",
+    "year": 2026,
+    "category": "conference",
+    "short": "LLMs as MDP Designers",
+    "title": "LLMs As MDP Designers: A Dependency-Aware Agentic Framework for Automated Robot Policy Generation",
+    "badge": "NeurIPS 2026",
+    "kind": "Conference · Accepted",
+    "authors": "H. Je-Gal, J. Kim, C. Yi, and H.-S. Lee",
+    "venue": "Conference on Neural Information Processing Systems (NeurIPS), 2026",
+    "lead": "From a robot task description to a reinforcement learning pipeline that can actually learn.",
+    "body": "ARPG uses LLM agents to design the learning problem before deployment. It builds an MDP in dependency order, checks and repairs intermediate decisions, and then implements the simulator through specialized agents. This keeps states, actions, rewards, and termination conditions aligned. Isaac Sim experiments show improvements in modeling correctness, executable environments, and successful policy generation over monolithic LLM and general agent baselines.",
+    "takeaway": "Reliable robot learning begins with a consistent problem formulation.",
+    "figure": "llms-mdp.webp",
+    "caption": "ARPG framework · Figure 2 in the manuscript.",
+    "alt": "ARPG pipeline from task and robot descriptions through sequential MDP modeling, validation, simulator implementation and policy training.",
+    "links": [
+      [
+        "Lab record",
+        "https://mainlab.kr/publications/#publication-1990"
+      ]
+    ]
+  },
+  {
+    "id": "fsp",
+    "year": 2026,
+    "category": "conference",
+    "short": "Factorized Scheduling Principle",
+    "title": "Factorized Scheduling Principle: Learning Interpretable and Transferable Policies via Structured Additive Functions",
+    "badge": "ICML 2026",
+    "kind": "Conference",
+    "authors": "Hong Je-Gal and Hyun-Suk Lee",
+    "venue": "International Conference on Machine Learning (ICML), 2026",
+    "lead": "Learn a scheduling rule once, understand its decisions, and reuse it at different system scales.",
+    "body": "FSP represents the candidate population as a condition distribution and learns a global scheduling principle from experience. It decomposes that principle into additive effects of individual features and feature pairs, making their contributions inspectable. At deployment, the learned principle produces a priority score for each candidate. Experiments on synthetic and realistic tasks demonstrate strong scheduling performance and zero-shot transfer across different system sizes.",
+    "takeaway": "An interpretable priority rule can also be a transferable learned policy.",
+    "figure": "fsp.webp",
+    "caption": "FSP framework · Figure 1 in the paper.",
+    "alt": "FSP overview: candidate items, condition distribution, additive global scheduling principle, and priority scoring and selection.",
+    "links": [
+      [
+        "OpenReview",
+        "https://openreview.net/forum?id=ImK3lNmGTW"
+      ],
+      [
+        "PDF",
+        "https://openreview.net/pdf?id=ImK3lNmGTW"
+      ]
+    ]
+  },
+  {
+    "id": "alamp",
+    "year": 2025,
+    "category": "conference",
+    "short": "A-LAMP",
+    "title": "A-LAMP: Agentic LLM-Based Framework for Automated MDP Modeling and Policy Generation",
+    "badge": "NeurIPS Workshop 2025",
+    "kind": "Workshop",
+    "authors": "Hong Je-Gal, Chan-Bin Yi, and Hyun-Suk Lee",
+    "venue": "NeurIPS Workshop on Multi-Turn Interactions in Large Language Models, 2025",
+    "lead": "Turn a natural-language task into an MDP, an executable environment, and a trained policy.",
+    "body": "A-LAMP divides this process among agents responsible for modeling, coding, and execution. Each stage produces artifacts that can be checked, helping preserve the meaning of the original task throughout the pipeline. Across classic control and custom reinforcement learning problems, the framework generates policies more reliably than a single LLM. A lightweight version using smaller models also approaches the performance of much larger models.",
+    "takeaway": "Explicit modeling stages make automated policy generation easier to inspect and verify.",
+    "figure": "alamp.webp",
+    "caption": "Human and A-LAMP workflows · Figure 1 in the paper.",
+    "alt": "Comparison of a human expert workflow with A-LAMP agents for abstract task interpretation, MDP formulation, and coding.",
+    "links": [
+      [
+        "arXiv",
+        "https://arxiv.org/abs/2512.11270"
+      ],
+      [
+        "PDF",
+        "https://arxiv.org/pdf/2512.11270"
+      ]
+    ]
+  },
+  {
+    "id": "jmse2024",
+    "year": 2024,
+    "category": "journal",
+    "short": "Explainable Marine Engine Fault Prediction",
+    "title": "Time-Series Explanatory Fault Prediction Framework for Marine Main Engine Using Explainable Artificial Intelligence",
+    "badge": "JMSE 2024",
+    "kind": "International journal",
+    "authors": "H. Je-Gal, Y.-S. Park, S.-H. Park, J.-U. Kim, J.-H. Yang, S. Kim, and H.-S. Lee",
+    "venue": "Journal of Marine Science and Engineering, 12(8), 1296, 2024",
+    "lead": "Predict an engine fault and show which sensor readings and time periods contributed to the prediction.",
+    "body": "This framework combines feature selection, time-series prediction, and explanation for marine main-engine monitoring. Statistical correlation and SHAP analysis help select useful sensor inputs. A prediction model estimates future sensor behavior, while temporal explanations identify influential portions of the input history. Evaluation includes simulated fault conditions in operational sensor data, connecting a predicted warning to evidence that an engineer can inspect.",
+    "takeaway": "A useful fault warning should explain both what may happen and the evidence behind it.",
+    "figure": "jmse2024.webp",
+    "caption": "Training and explanation framework · Author’s research presentation.",
+    "alt": "Marine engine prediction framework with correlation and SHAP based feature selection, model training and time-specific explanations.",
+    "links": [
+      [
+        "Paper",
+        "https://doi.org/10.3390/jmse12081296"
+      ]
+    ]
+  },
+  {
+    "id": "soft-sensor",
+    "year": 2024,
+    "category": "conference",
+    "short": "Soft Sensors with Predictive Credibility",
+    "title": "A Novel Data-Driven Soft Sensor in Metaverse Provisioning Predictive Credibility Based on Uncertainty Quantification",
+    "badge": "IEEE MetaCom 2024",
+    "kind": "Meta-XP Workshop",
+    "authors": "S.-H. Park, H. Je-Gal, and H.-S. Lee",
+    "venue": "IEEE MetaCom · Meta-XP Workshop, pp. 285–290, 2024",
+    "lead": "A virtual sensor should report how trustworthy its prediction is, as well as the predicted value.",
+    "body": "Soft sensors estimate measurements from data, but their reliability can vary with operating conditions. This work adds uncertainty quantification to a soft-sensor architecture so that each prediction is accompanied by a confidence interval. Experiments use scenarios with different levels of predictive uncertainty to evaluate those intervals. The resulting credibility information helps users assess when a prediction is dependable and when it needs more caution.",
+    "takeaway": "Prediction uncertainty is useful information for operating a digital twin.",
+    "figure": "soft-sensor.webp",
+    "caption": "Soft-sensing system and predictive credibility · Figure 1 in the paper.",
+    "alt": "Multiple physical sensors provide measurements to a soft sensor, which estimates a target sensor value and its predictive credibility.",
+    "links": [
+      [
+        "Paper",
+        "https://doi.org/10.1109/MetaCom62920.2024.00053"
+      ],
+      [
+        "Scholar",
+        "https://scholar.google.co.kr/citations?view_op=view_citation&hl=en&user=hsu3e9YAAAAJ&citation_for_view=hsu3e9YAAAAJ:2osOgNQ5qMEC"
+      ]
+    ]
+  },
+  {
+    "id": "jmse2023",
+    "year": 2023,
+    "category": "journal",
+    "short": "Time–Frequency Fusion for Marine Engine Fault Detection",
+    "title": "A Novel Time–Frequency Feature Fusion Approach for Robust Fault Detection in a Marine Main Engine",
+    "badge": "JMSE 2023",
+    "kind": "International journal",
+    "authors": "H. Je-Gal, S.-J. Lee, J.-H. Yoon, H.-S. Lee, J.-H. Yang, and S. Kim",
+    "venue": "Journal of Marine Science and Engineering, 11(8), 1577, 2023",
+    "lead": "Keep fault detection reliable even when engine vibration data are sampled less frequently.",
+    "body": "Downsampling reduces data volume but can remove information needed for diagnosis. This work combines time-domain statistics with frequency-domain features extracted using EMD–ICA and the Wigner bispectrum. A neural network then classifies engine conditions using the fused features. In the study’s experiments, the combined representation outperforms either domain alone and retains 96.3% accuracy at a 100× downsampling rate.",
+    "takeaway": "Complementary time and frequency features preserve diagnostic information under reduced sampling.",
+    "figure": "jmse2023.webp",
+    "caption": "Feature-fusion framework · Figure 6 in the paper (CC BY 4.0).",
+    "alt": "RPM data split into time-domain and frequency-domain feature extraction, then combined for neural-network fault detection.",
+    "links": [
+      [
+        "Paper",
+        "https://doi.org/10.3390/jmse11081577"
+      ]
+    ]
+  },
+  {
+    "id": "twin-sync",
+    "year": 2023,
+    "category": "conference",
+    "short": "Efficient Federated Digital Twin Synchronization",
+    "title": "Efficient Federated Digital Twin Synchronization in Edge-Cloud Collaborative System",
+    "badge": "IEEE MetaCom 2023",
+    "kind": "Meta-XP Workshop",
+    "authors": "J.-W. Kim, H. Je-Gal, and H.-S. Lee",
+    "venue": "IEEE MetaCom · Meta-XP Workshop, pp. 714–719, 2023",
+    "lead": "Decide where a digital twin’s neural network should run to reduce synchronization time.",
+    "body": "A federated digital twin contains multiple twins whose updates depend on neural-network inference. This work partitions each network between an edge device and the cloud and accounts for early exits that can finish inference before all layers run. It formulates the choice of partition points as an optimization problem to minimize expected total synchronization time, and develops an exhaustive partitioning algorithm for finding the optimal choices.",
+    "takeaway": "The placement of computation and the chance of an early exit need to be considered together.",
+    "figure": "twin-sync.webp",
+    "caption": "Edge–cloud collaboration and early exits · Figure 1 in the paper.",
+    "alt": "Digital twin networks split neural inference between edge and cloud, with multiple early-exit points.",
+    "links": [
+      [
+        "Paper",
+        "https://doi.org/10.1109/MetaCom57706.2023.00134"
+      ],
+      [
+        "Scholar",
+        "https://scholar.google.co.kr/citations?view_op=view_citation&hl=en&user=hsu3e9YAAAAJ&citation_for_view=hsu3e9YAAAAJ:u5HHmVD_uO8C"
+      ]
+    ]
+  },
+  {
+    "id": "role-model",
+    "year": 2023,
+    "category": "domestic",
+    "short": "Digital Role-Model Twin",
+    "title": "Digital Role-Model Twin Using Reinforcement Learning Model",
+    "badge": "J-KICS 2023",
+    "kind": "Domestic journal",
+    "authors": "J.-W. Kim, H. Je-Gal, S.-J. Lee, and H.-S. Lee",
+    "venue": "The Journal of Korean Institute of Communications and Information Sciences, 48(2), 282–293, 2023",
+    "lead": "Learn how a role model makes decisions, then let others explore those preferences in their own context.",
+    "body": "The proposed digital twin learns from a target person’s choices in decision-making tasks. Reinforcement learning combines contextual information, role-model features, and a preference network to estimate which actions that person would favor. Users can then query the learned model with new decision problems and contextual information. Experiments examine how well the twin learns and reproduces the target person’s preferences.",
+    "takeaway": "A digital twin can represent decision preferences as well as physical behavior.",
+    "figure": "role-model.webp",
+    "caption": "Digital role-model twin structure · Figure 1 in the paper.",
+    "alt": "Role models and contextual decision features feed a shared preference network that offers role-model-specific preferences to users.",
+    "links": [
+      [
+        "Paper",
+        "https://doi.org/10.7840/kics.2023.48.2.282"
+      ]
+    ]
+  }
+]
