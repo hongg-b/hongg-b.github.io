@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Hong Je-Gal (제갈홍), Ph.D. student at Sejong University, MAIN Lab. Research in intelligent decision-making, agentic AI, and explainable machine learning.">
+  <meta name="theme-color" content="#176653">
+  <title>Hong Je-Gal — Personal Homepage</title>
+  <link rel="canonical" href="https://hongg-b.github.io/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23176653'/%3E%3Ctext x='32' y='44' text-anchor='middle' font-family='Georgia' font-size='40' fill='white'%3EH%3C/text%3E%3C/svg%3E">
+  <style>
+    :root{color-scheme:light;--bg:#fcfcfa;--paper:#fff;--ink:#20362f;--text:#45564f;--muted:#65776e;--green:#176653;--line:#dce5df;--wash:#edf4ef;--gold:#a27d33}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:100px}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,"Segoe UI",Arial,sans-serif;font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased}
+    a{color:var(--green);text-underline-offset:4px;text-decoration-thickness:1px}
+    a:hover{color:#0d4938}
+    a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:5px;border-radius:3px}
+    .wrap{width:min(100% - 56px,1000px);margin-inline:auto}
+    .skip{position:fixed;top:-70px;left:20px;background:var(--green);color:#fff;padding:10px 18px;z-index:20}
+    .skip:focus{top:10px}
+    header{position:sticky;top:0;z-index:10;background:rgba(252,252,250,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(14px)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:76px}
+    .brand{font-family:Georgia,"Times New Roman",serif;font-size:24px;font-weight:700;text-decoration:none;color:var(--ink);white-space:nowrap}
+    nav{display:flex;gap:30px}
+    nav a{font-size:14px;font-weight:600;color:var(--muted);text-decoration:none;padding:12px 0}
+    nav a:hover{color:var(--green)}
+    .intro{position:relative;display:grid;grid-template-columns:236px minmax(0,1fr);align-items:center;gap:62px;padding-block:82px 65px}
+    .portrait-wrap{align-self:center;text-align:center}
+    .portrait{display:block;width:220px;height:220px;object-fit:cover;object-position:center;border-radius:50%;padding:7px;border:1px solid #bbcec2;background:#fff;box-shadow:0 14px 35px #294c3810;margin:auto}
+    .portrait-label{font-size:13px;letter-spacing:.1em;color:var(--muted);margin-top:18px}
+    .eyebrow{font-size:12px;letter-spacing:.17em;font-weight:700;color:var(--green);text-transform:uppercase;margin:0 0 12px}
+    h1,h2{font-family:Georgia,"Times New Roman",serif;color:var(--ink);font-weight:600;line-height:1.16}
+    h1{font-size:clamp(38px,5vw,56px);letter-spacing:-.035em;margin:0 0 10px}
+    .name-ko{font:400 20px/1.5 "Segoe UI",sans-serif;letter-spacing:0;color:var(--muted);display:inline-block;margin-left:12px;vertical-align:middle}
+    .role{font-size:16px;color:var(--green);font-weight:600;margin:0 0 23px}
+    .bio{margin:0 0 16px}
+    .bio a{font-weight:500}
+    .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+    .button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:42px;padding:7px 17px;border:1px solid #c6d5cd;border-radius:24px;font-size:14px;font-weight:600;text-decoration:none;background:var(--paper);color:var(--green);transition:background .15s,transform .15s}
+    .button:hover{background:var(--wash);transform:translateY(-1px)}
+    .button.primary{background:var(--green);border-color:var(--green);color:white}
+    .button.primary:hover{background:#0e513f}
+    .interests{display:flex;flex-wrap:wrap;gap:8px;margin:25px 0 0;padding:0;list-style:none}
+    .interests li{font-size:13px;color:#4f665a;border-radius:5px;padding:3px 10px;background:var(--wash)}
+    section{scroll-margin-top:22px}
+    .section-head{display:flex;align-items:baseline;justify-content:space-between;gap:24px;margin-bottom:27px}
+    h2{font-size:33px;margin:0;letter-spacing:-.02em}
+    .section-head a{font-size:14px;white-space:nowrap}
+    .news-section{border-top:1px solid var(--line);padding-top:34px;margin-bottom:62px}
+    .news{list-style:none;margin:0;padding:0}
+    .news li{display:grid;grid-template-columns:105px 1fr;gap:25px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
+    .news li:last-child{border-bottom:0}
+    .news time{color:var(--green);font-size:13px;font-weight:700;letter-spacing:.03em;padding-top:2px}
+    .news strong{font-weight:650;color:var(--ink)}
+    .year-group{display:grid;grid-template-columns:105px minmax(0,1fr);gap:25px;border-top:1px solid var(--line);padding-top:28px;margin-top:14px}
+    .year{font-family:Georgia,serif;font-size:25px;line-height:1.3;font-weight:400;color:#71877b;margin:0;padding-top:3px}
+    article{padding-bottom:27px;margin-bottom:25px;border-bottom:1px solid var(--line)}
+    article:last-child{border-bottom:0;margin-bottom:0;padding-bottom:16px}
+    .venue-tag{display:inline-block;color:var(--green);background:var(--wash);border:1px solid #d8e6dd;border-radius:4px;padding:1px 8px;font-size:12px;line-height:1.8;font-weight:700;letter-spacing:.025em;margin-bottom:9px}
+    .venue-tag.highlight{background:#e3f0e9;color:#155b46;border-color:#c9dfd1}
+    h3.paper-title{font-size:18px;line-height:1.5;font-weight:650;color:var(--ink);margin:0 0 8px;letter-spacing:-.01em}
+    .authors{font-size:14px;line-height:1.65;margin:0 0 3px;color:var(--muted)}
+    .authors strong{color:var(--ink);font-weight:600}
+    .venue{font-size:14px;color:var(--muted);margin:0 0 10px;font-style:italic}
+    .paper-links{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 16px;font-size:13px;font-weight:600}
+    .paper-links a{text-decoration:none;border-bottom:1px solid #b4cdbd}
+    details{margin-top:12px;font-size:13px}
+    summary{display:inline-block;cursor:pointer;color:var(--green);border:1px solid #c6d5cd;border-radius:4px;padding:1px 8px;list-style:none}
+    summary::-webkit-details-marker{display:none}
+    summary::after{content:' +';margin-left:6px}
+    details[open] summary::after{content:' −'}
+    pre{background:var(--wash);padding:18px;border-radius:6px;overflow:auto;font-size:12px;line-height:1.7;white-space:pre-wrap;overflow-wrap:anywhere}
+    footer{border-top:1px solid var(--line);margin-top:58px;padding:29px 0 38px;font-size:13px;color:var(--muted)}
+    .footer-row{display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .footer-row p{margin:0}
+    .footer-row a{text-decoration:none}
+    @media(max-width:760px){.wrap{width:min(100% - 36px,620px)}.nav{gap:16px;min-height:68px}.brand{font-size:21px}nav{gap:18px}nav a{font-size:13px}.intro{grid-template-columns:1fr;gap:28px;padding-block:40px 42px}.portrait{width:166px;height:166px}.portrait-label{display:none}.intro-copy{text-align:center}h1{font-size:41px}.role{font-size:15px}.bio{text-align:left}.links,.interests{justify-content:center}.name-ko{font-size:18px;margin-left:8px}.news-section{padding-top:28px;margin-bottom:42px}.news li{grid-template-columns:78px 1fr;gap:12px}.year-group{grid-template-columns:1fr;gap:13px;padding-top:21px}.year{font-size:22px}.section-head{gap:12px;margin-bottom:20px}h2{font-size:29px}.section-head a{font-size:13px}.footer-row{align-items:flex-start}.paper-title{overflow-wrap:anywhere}}
+    @media(max-width:380px){.nav{align-items:center;flex-wrap:wrap;justify-content:center;gap:0;padding:10px 0}.brand{width:100%;text-align:center}nav{gap:24px}nav a{padding:6px 0}.name-ko{display:block;margin:4px 0}.section-head{align-items:flex-start;flex-direction:column;gap:8px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.button{transition:none}}
+  </style>
+</head>
+<body id="top">
+  <a class="skip" href="#about">Skip to content</a>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#top">Hong Je-Gal<span style="color:var(--green)">.</span></a>
+      <nav aria-label="Main navigation"><a href="#about">About</a><a href="#news">News</a><a href="#publications">Publications</a></nav>
+    </div>
+  </header>
+  <main class="wrap">
+    <section class="intro" id="about" aria-labelledby="name">
+      <div class="portrait-wrap">
+        <img class="portrait" src="data:image/jpeg;base64,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" alt="Hong Je-Gal" width="220" height="220" fetchpriority="high">
+        <div class="portrait-label">SEJONG UNIVERSITY · MAIN LAB</div>
+      </div>
+      <div class="intro-copy">
+        <p class="eyebrow">Intelligent decision-making &amp; explainable AI</p>
+        <h1 id="name">Hong Je-Gal <span class="name-ko" lang="ko">제갈홍</span></h1>
+        <p class="role">Ph.D. Student · Sejong University</p>
+        <p class="bio">I am a Ph.D. student at <a href="https://sejong.ac.kr/">Sejong University</a> and a member of the <a href="https://mainlab.kr/">Machine Intelligence and Networking (MAIN) Lab</a>, working with <a href="https://mainlab.kr/members/">Prof. Hyun-Suk Lee</a>.</p>
+        <p class="bio">My research focuses on intelligent decision-making and explainable machine learning. My recent work explores agentic LLMs for automated MDP modeling and robot policy generation, as well as interpretable and transferable scheduling policies. I have also worked on explainable fault prediction and digital twins.</p>
+        <div class="links" aria-label="Profile links">
+          <a class="button primary" href="https://scholar.google.co.kr/citations?user=hsu3e9YAAAAJ&amp;hl=en">Google Scholar <span aria-hidden="true">↗</span></a>
+          <a class="button" href="https://github.com/hongg-b">GitHub <span aria-hidden="true">↗</span></a>
+          <a class="button" href="https://mainlab.kr/">MAIN Lab <span aria-hidden="true">↗</span></a>
+        </div>
+        <ul class="interests" aria-label="Research interests"><li>Agentic AI</li><li>Reinforcement Learning</li><li>Explainable AI</li></ul>
+      </div>
+    </section>
+
+    <section id="news" class="news-section" aria-labelledby="news-title">
+      <div class="section-head"><h2 id="news-title">News</h2></div>
+      <ul class="news">
+        <li><time datetime="2026-09">Sep 2026</time><span>Our paper <a href="#llms-mdp">“LLMs As MDP Designers”</a> has been accepted to <strong>NeurIPS 2026</strong>.</span></li>
+        <li><time datetime="2026-05">May 2026</time><span>Our paper <a href="#fsp">“Factorized Scheduling Principle”</a> has been accepted to <strong>ICML 2026</strong>.</span></li>
+        <li><time datetime="2025-12">Dec 2025</time><span><a href="#alamp">A-LAMP</a> was presented at the <strong>NeurIPS 2025 Workshop on Multi-Turn Interactions in Large Language Models</strong>.</span></li>
+      </ul>
+    </section>
+
+    <section id="publications" aria-labelledby="pub-title">
+      <div class="section-head"><h2 id="pub-title">Selected Publications</h2><a href="https://scholar.google.co.kr/citations?user=hsu3e9YAAAAJ&amp;hl=en">All publications <span aria-hidden="true">↗</span></a></div>
+      <div class="year-group">
+        <h3 class="year">2026</h3>
+        <div>
+          <article id="llms-mdp">
+            <span class="venue-tag highlight">NeurIPS 2026 · Accepted</span>
+            <h3 class="paper-title">LLMs As MDP Designers: A Dependency-Aware Agentic Framework for Automated Robot Policy Generation</h3>
+            <p class="authors"><strong>H. Je-Gal</strong>, J. Kim, C. Yi, and H.-S. Lee</p>
+            <p class="venue">Conference on Neural Information Processing Systems (NeurIPS), 2026</p>
+            <div class="paper-links"><a href="https://mainlab.kr/publications/#publication-1990">Lab publication record</a></div>
+          </article>
+          <article id="fsp">
+            <span class="venue-tag highlight">ICML 2026</span>
+            <h3 class="paper-title">Factorized Scheduling Principle: Learning Interpretable and Transferable Policies via Structured Additive Functions</h3>
+            <p class="authors"><strong>Hong Je-Gal</strong> and Hyun-Suk Lee</p>
+            <p class="venue">International Conference on Machine Learning (ICML), 2026</p>
+            <div class="paper-links"><a href="https://openreview.net/forum?id=ImK3lNmGTW">OpenReview</a><a href="https://openreview.net/pdf?id=ImK3lNmGTW">PDF</a></div>
+            <details><summary>BibTeX</summary><pre>@inproceedings{jegal2026factorized,
+  title={Factorized Scheduling Principle: Learning Interpretable and Transferable Policies via Structured Additive Functions},
+  author={Je-Gal, Hong and Lee, Hyun-Suk},
+  booktitle={International Conference on Machine Learning},
+  year={2026},
+  url={https://openreview.net/forum?id=ImK3lNmGTW}
+}</pre></details>
+          </article>
+        </div>
+      </div>
+      <div class="year-group">
+        <h3 class="year">2025</h3>
+        <div>
+          <article id="alamp">
+            <span class="venue-tag">NeurIPS Workshop 2025</span>
+            <h3 class="paper-title">A-LAMP: Agentic LLM-Based Framework for Automated MDP Modeling and Policy Generation</h3>
+            <p class="authors"><strong>H. Je-Gal</strong>, C.-B. Yi, and H.-S. Lee</p>
+            <p class="venue">NeurIPS Workshop on Multi-Turn Interactions in Large Language Models, 2025</p>
+            <div class="paper-links"><a href="https://arxiv.org/abs/2512.11270">arXiv</a></div>
+            <details><summary>BibTeX</summary><pre>@article{jegal2025alamp,
+  title={A-LAMP: Agentic LLM-Based Framework for Automated MDP Modeling and Policy Generation},
+  author={Je-Gal, Hong and Yi, Chanbin and Lee, Hyun-Suk},
+  journal={arXiv preprint arXiv:2512.11270},
+  year={2025},
+  url={https://arxiv.org/abs/2512.11270}
+}</pre></details>
+          </article>
+        </div>
+      </div>
+      <div class="year-group">
+        <h3 class="year">2024</h3>
+        <div>
+          <article>
+            <span class="venue-tag">JMSE 2024</span>
+            <h3 class="paper-title">Time-Series Explanatory Fault Prediction Framework for Marine Main Engine Using Explainable Artificial Intelligence</h3>
+            <p class="authors"><strong>H. Je-Gal</strong>, Y.-S. Park, S.-H. Park, J.-U. Kim, J.-H. Yang, S. Kim, and H.-S. Lee</p>
+            <p class="venue">Journal of Marine Science and Engineering, 12(8), 1296, 2024</p>
+            <div class="paper-links"><a href="https://doi.org/10.3390/jmse12081296">Paper</a></div>
+          </article>
+          <article>
+            <span class="venue-tag">IEEE MetaCom Workshop 2024</span>
+            <h3 class="paper-title">A Novel Data-Driven Soft Sensor in Metaverse Provisioning Predictive Credibility Based on Uncertainty Quantification</h3>
+            <p class="authors">S.-H. Park, <strong>H. Je-Gal</strong>, and H.-S. Lee</p>
+            <p class="venue">IEEE MetaCom (Meta-XP Workshop), 2024</p>
+            <div class="paper-links"><a href="https://scholar.google.co.kr/citations?view_op=view_citation&amp;hl=en&amp;user=hsu3e9YAAAAJ&amp;citation_for_view=hsu3e9YAAAAJ:2osOgNQ5qMEC">Google Scholar</a></div>
+          </article>
+        </div>
+      </div>
+      <div class="year-group">
+        <h3 class="year">2023</h3>
+        <div>
+          <article>
+            <span class="venue-tag">JMSE 2023</span>
+            <h3 class="paper-title">A Novel Time–Frequency Feature Fusion Approach for Robust Fault Detection in a Marine Main Engine</h3>
+            <p class="authors"><strong>H. Je-Gal</strong>, S.-J. Lee, J.-H. Yoon, H.-S. Lee, J.-H. Yang, and S. Kim</p>
+            <p class="venue">Journal of Marine Science and Engineering, 11(8), 1577, 2023</p>
+            <div class="paper-links"><a href="https://doi.org/10.3390/jmse11081577">Paper</a></div>
+          </article>
+          <article>
+            <span class="venue-tag">IEEE MetaCom Workshop 2023</span>
+            <h3 class="paper-title">Efficient Federated Digital Twin Synchronization in Edge-Cloud Collaborative System</h3>
+            <p class="authors">J.-W. Kim, <strong>H. Je-Gal</strong>, and H.-S. Lee</p>
+            <p class="venue">IEEE MetaCom (Meta-XP Workshop), 2023</p>
+            <div class="paper-links"><a href="https://scholar.google.co.kr/citations?view_op=view_citation&amp;hl=en&amp;user=hsu3e9YAAAAJ&amp;citation_for_view=hsu3e9YAAAAJ:u5HHmVD_uO8C">Google Scholar</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer><div class="wrap footer-row"><p>© 2026 Hong Je-Gal<br>Sejong University · MAIN Lab</p><p><a href="#top">Back to top ↑</a><br><span>Built with GitHub Pages</span></p></div></footer>
+</body>
+</html>
