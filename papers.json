@@ -40,12 +40,16 @@
     "alt": "FSP overview: candidate items, condition distribution, additive global scheduling principle, and priority scoring and selection.",
     "links": [
       [
+        "arXiv",
+        "https://arxiv.org/abs/2609.36578"
+      ],
+      [
         "OpenReview",
         "https://openreview.net/forum?id=ImK3lNmGTW"
       ],
       [
         "PDF",
-        "https://openreview.net/pdf?id=ImK3lNmGTW"
+        "https://arxiv.org/pdf/2609.36578"
       ]
     ]
   },
