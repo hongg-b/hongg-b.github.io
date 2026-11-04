@@ -17,6 +17,14 @@
     "alt": "ARPG pipeline from task and robot descriptions through sequential MDP modeling, validation, simulator implementation and policy training.",
     "links": [
       [
+        "arXiv",
+        "https://arxiv.org/abs/2611.04974"
+      ],
+      [
+        "PDF",
+        "https://arxiv.org/pdf/2611.04974"
+      ],
+      [
         "Lab record",
         "https://mainlab.kr/publications/#publication-1990"
       ]
