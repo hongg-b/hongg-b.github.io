@@ -133,7 +133,8 @@ video.portrait-cut { aspect-ratio: 640 / 796; object-fit: contain; }
   .switches button { min-height: 44px; font-size: 15px; }
   .demos, .method, .beyond { padding-block: 34px; }
   .demos { padding-top: 19px; }
-  .screen { margin-inline: calc((100% - 100vw) / 2); border-inline: 0; border-radius: 0; }
+  .demos { container-type: inline-size; }
+  .screen { margin-inline: calc((100% - 100cqw) / 2); border-inline: 0; border-radius: 0; }
   video.portrait-cut { max-height: 72svh; }
   .method { gap: 19px; }
   .reel { gap: 17px; }
