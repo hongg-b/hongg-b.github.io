@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f7f0">
+  <meta name="description" content="ARPG at NeurIPS 2026. Watch expert and generated robot policies side by side, explore five new tasks, and see results beyond robotics.">
+  <title>ARPG · LLMs as MDP Designers</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="page.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#demos">Skip to videos</a>
+<header class="header">
+  <nav class="wrap"><a href="#top" class="brand" aria-label="ARPG project home"><i aria-hidden="true"></i>ARPG</a>
+    <div class="navlinks"><a href="#demos">Videos</a><a href="#method">Method</a><a href="#beyond">Beyond robotics</a></div>
+  </nav>
+</header>
+<main id="top">
+  <section class="hero wrap" aria-labelledby="title">
+    <div class="intro">
+      <p class="kicker"><b>NeurIPS 2026</b><span>Sejong University</span></p>
+      <h1 id="title">LLMs as <br>MDP Designers<span>.</span></h1>
+      <p class="subtitle">A Dependency-Aware Agentic Framework for Automated Robot Policy Generation</p>
+      <p class="authors"><a href="https://hongg-b.github.io/">Hong Je-Gal</a>, Jinwoo Kim, Chan-Bin Yi, Hyun-Suk Lee</p>
+      <div class="actions"><a class="primary" href="#demos"><span aria-hidden="true">▶</span> Watch rollouts</a><a class="textlink" href="https://arxiv.org/abs/2611.04974">arXiv <span aria-hidden="true">↗</span></a><a class="textlink" href="https://arxiv.org/pdf/2611.04974">PDF <span aria-hidden="true">↗</span></a></div>
+    </div>
+    <a class="hero-shot" href="#variants" data-scene="4.3" aria-label="Play the Jumping Ant rollout">
+      <img src="media/jumping-ant.jpg" width="1160" height="520" alt="Simulated Ant robots in midair above the Isaac Sim grid">
+      <div class="shot-caption"><div><small>Isaac Sim rollout</small><strong>Jumping Ant</strong></div><span class="play" aria-hidden="true">▶</span></div>
+    </a>
+  </section>
+  <section class="demos" id="demos" aria-labelledby="demo-title"><div class="wrap">
+    <div class="demo-header"><h2 id="demo-title">Policy rollouts</h2>
+      <div class="switches" aria-label="Select video" hidden><button aria-pressed="true" data-target="benchmarks">Benchmarks</button><button aria-pressed="false" data-target="variants">New tasks</button></div>
+    </div>
+    <article class="reel" id="benchmarks">
+      <div class="screen"><video controls playsinline preload="none" poster="media/benchmarks.jpg" aria-label="Five benchmark comparisons"><source src="media/benchmarks.mp4" type="video/mp4"></video></div>
+      <div class="reel-info">
+        <p class="micro">Isaac Lab <span>/</span> 0:52</p><h3>ARPG vs. expert</h3><p>Each task pairs a policy trained with Isaac Lab’s expert-designed pipeline with one trained using the ARPG-generated pipeline.</p>
+        <div class="chapters" aria-label="Benchmark video chapters" hidden></div>
+        <a class="video-file" href="media/benchmarks.mp4">Open video file ↗</a>
+      </div>
+    </article>
+    <article class="reel" id="variants">
+      <div class="screen"><video controls playsinline preload="none" poster="media/new-tasks.jpg" aria-label="Five additional robot behaviors"><source src="media/new-tasks.mp4" type="video/mp4"></video></div>
+      <div class="reel-info">
+        <p class="micro">Isaac Sim <span>/</span> 0:20</p><h3>New robot tasks</h3><p>Changing the task description and robot configuration gives ARPG a new objective, from jumping in place to moving a cube between two tables.</p>
+        <div class="chapters" aria-label="New task video chapters" hidden></div>
+        <a class="video-file" href="media/new-tasks.mp4">Open video file ↗</a>
+      </div>
+    </article>
+  </div></section>
+  <section class="method wrap" id="method"><div class="method-intro"><p class="kicker"><b>Method</b></p><h2>From a task description to a trained policy</h2>
+    <p>ARPG first defines the objective, states, actions, rewards, and constraints of a Markov decision process. Agents check intermediate decisions and repair inconsistencies before separate coding agents build the simulator components used to train the policy.</p></div>
+    <figure><a class="plot" href="media/framework.webp" target="_blank" rel="noopener"><img src="media/framework.webp" loading="lazy" width="1552" height="588" alt="Task inputs feed sequential modeling and error correction, followed by parallel configuration agents and policy validation in Isaac Sim"></a><figcaption>Fig. 2 <span>Modeling and implementation phases of ARPG.</span></figcaption></figure>
+  </section>
+  <section class="beyond wrap" id="beyond"><div class="section-intro"><p class="kicker"><b>Appendix G</b></p><h2>Beyond robotics</h2><p>These experiments reuse the MDP modeling pipeline with a single coding agent for lightweight environments. Select a figure to inspect the original plots.</p></div>
+    <div class="result-grid">
+      <article class="result main-result"><a class="plot" href="media/control.webp" target="_blank" rel="noopener"><img src="media/control.webp" width="1624" height="1076" loading="lazy" alt="Four evaluation plots comparing DQN, optimal, and random performance on CartPole, MountainCar, drone delivery, and inventory management"></a><div><p class="micro">Fig. 5 <span>/</span> Appendix G.3</p><h3>Control, delivery &amp; inventory</h3><p>CartPole and MountainCar test classic control. Drone delivery introduces an energy budget, and inventory management introduces demand uncertainty. The plots compare each learned policy with optimal and random baselines.</p></div></article>
+      <article class="result"><a class="plot" href="media/wireless.webp" target="_blank" rel="noopener"><img src="media/wireless.webp" width="1612" height="524" loading="lazy" alt="Wireless scheduling reward and quality-of-service comparisons for the generated policy, expert policy, and baselines"></a><div><p class="micro">Fig. 6 <span>/</span> Appendix G.4.1</p><h3>Wireless scheduling</h3><p>The policy selects a user and transmit power at each time slot. It achieves rewards close to the expert DQN while meeting the required average data rate.</p></div></article>
+      <article class="result"><a class="plot" href="media/energy.webp" target="_blank" rel="noopener"><img src="media/energy.webp" width="1612" height="516" loading="lazy" alt="Daily energy demand, generation, grid purchases, and battery level for the expert and ARPG policies"></a><div><p class="micro">Fig. 7 <span>/</span> Appendix G.4.2</p><h3>Energy management</h3><p>The policy shifts grid purchases and battery use as electricity prices change. Its annual cost was 148.72, within 0.90% of the expert policy’s 147.40 (Table 15).</p></div></article>
+    </div>
+  </section>
+</main>
+<dialog class="figure-view" aria-labelledby="figure-name">
+  <div class="figure-tools">
+    <strong id="figure-name">Paper figure</strong>
+    <button type="button" class="zoom">Zoom in</button>
+    <form method="dialog"><button type="submit">Close</button></form>
+  </div>
+  <div class="figure-pan" tabindex="0" aria-label="Scrollable figure"><img alt=""></div>
+</dialog>
+<footer><div class="wrap"><span><strong>ARPG</strong> · NeurIPS 2026</span><a href="https://mainlab.kr/">MAIN Lab ↗</a></div></footer>
+</body>
+</html>
