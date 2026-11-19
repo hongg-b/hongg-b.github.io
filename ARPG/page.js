@@ -17,7 +17,7 @@ if (phone.matches && window.matchMedia("(orientation: portrait)").matches) {
   video.src = "media/benchmarks-portrait.mp4";
   video.poster = "media/benchmarks-portrait.jpg";
   video.classList.add("portrait-cut");
-  comparison.querySelector(".video-file").href = video.src;
+  comparison.querySelector(".video-file").setAttribute("href", "media/benchmarks-portrait.mp4");
 }
 function showReel(id) {
   for (const reel of reels) {
@@ -57,12 +57,14 @@ for (const reel of reels) {
   });
   function markChapter() {
     const now = video.currentTime + 0.04;
+    const started = video.played.length > 0 || video.currentTime > 0;
     buttons.forEach((button, index) => {
-      const active = entries[index][0] <= now && (index + 1 === entries.length || entries[index + 1][0] > now);
+      const active = started && entries[index][0] <= now && (index + 1 === entries.length || entries[index + 1][0] > now);
       button.setAttribute("aria-current", String(active));
     });
   }
   video.addEventListener("timeupdate", markChapter);
+  video.addEventListener("seeked", markChapter);
   markChapter();
   list.hidden = false;
 }
@@ -199,4 +201,18 @@ if (typeof figureView.showModal === "function") {
       sizeFigure(phone.matches);
     });
   }
+}
+
+const copyBib = document.querySelector(".copy-bib");
+if (copyBib && navigator.clipboard) {
+  copyBib.hidden = false;
+  copyBib.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(document.getElementById("bibtex").textContent);
+      copyBib.textContent = "Copied";
+    } catch {
+      copyBib.textContent = "Select and copy";
+    }
+    setTimeout(() => { copyBib.textContent = "Copy"; }, 1800);
+  });
 }
