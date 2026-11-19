@@ -71,6 +71,48 @@ for (const selector of selectors) {
 }
 document.querySelector(".switches").hidden = false;
 showReel(location.hash === "#variants" ? "variants" : "benchmarks");
+const mdpTabs = document.querySelector(".mdp-tabs");
+if (mdpTabs) {
+  const panels = [...document.querySelectorAll(".mdp-panel")];
+  const tabs = panels.map(panel => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.id = panel.id + "-tab";
+    button.textContent = panel.querySelector("h3").textContent;
+    button.setAttribute("role", "tab");
+    button.setAttribute("aria-controls", panel.id);
+    panel.setAttribute("role", "tabpanel");
+    panel.setAttribute("aria-labelledby", button.id);
+    panel.tabIndex = 0;
+    mdpTabs.append(button);
+    return button;
+  });
+  function selectTask(index) {
+    tabs.forEach((button, i) => {
+      const selected = i === index;
+      button.setAttribute("aria-selected", String(selected));
+      button.tabIndex = selected ? 0 : -1;
+      panels[i].hidden = !selected;
+    });
+  }
+  tabs.forEach((button, index) => {
+    button.addEventListener("click", () => selectTask(index));
+    button.addEventListener("keydown", event => {
+      const next = {
+        ArrowRight: (index + 1) % tabs.length,
+        ArrowLeft: (index + tabs.length - 1) % tabs.length,
+        Home: 0,
+        End: tabs.length - 1
+      }[event.key];
+      if (next === undefined) return;
+      event.preventDefault();
+      selectTask(next);
+      tabs[next].focus();
+    });
+  });
+  selectTask(0);
+  mdpTabs.hidden = false;
+}
 for (const link of document.querySelectorAll(".rollout-link")) {
   link.addEventListener("click", event => {
     if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;

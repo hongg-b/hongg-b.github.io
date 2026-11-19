@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#f7f7f0">
   <meta name="description" content="Watch ARPG's robot policies, explore the MDPs it generated for five benchmarks, and see results beyond robotics.">
   <title>ARPG · LLMs as MDP Designers</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="page.js" defer></script>
+  <link rel="stylesheet" href="style.css?v=mdp-reader">
+  <script src="page.js?v=mdp-reader" defer></script>
 </head>
 <body>
 <a class="skip" href="#demos">Skip to videos</a>
@@ -56,48 +56,72 @@
     <figure><a class="plot" href="media/framework.webp" target="_blank" rel="noopener"><img src="media/framework.webp" loading="lazy" width="1552" height="588" alt="Task inputs feed sequential modeling and error correction, followed by parallel configuration agents and policy validation in Isaac Sim"></a><figcaption>Fig. 2 <span>Modeling and implementation phases of ARPG.</span></figcaption></figure>
   </section>
   <section class="mdps wrap" id="mdps" aria-labelledby="mdp-title">
-    <div class="mdp-intro"><p class="kicker"><b>Supplementary material · Section B</b></p>
-      <h2 id="mdp-title">Generated MDPs</h2>
-      <p>What does a robot observe, what can it control, and what earns a reward? Explore ARPG’s answers for each benchmark, then follow the original equations in its logbook.</p>
-    </div>
-    <div class="mdp-list">
-      <details open><summary><span>CartPole</span><small>Balance a pole</small></summary>
-        <div class="mdp-body"><dl>
-          <dt>State</dt><dd>Cart position and velocity, pole angle and angular velocity.</dd>
-          <dt>Action</dt><dd>Apply one continuous horizontal force to the cart.</dd>
-          <dt>Reward</dt><dd>Earn 1 for each step the cart stays within 3 m of center and the pole tilts less than 0.5 radians from upright. Otherwise the reward is 0.</dd>
-        </dl><div class="mdp-links"><a href="mdp-cartpole.pdf">Full trace (PDF)</a><a class="rollout-link" href="media/benchmarks.mp4#t=0">Watch rollout · 0:00</a></div></div>
-      </details>
-      <details><summary><span>Ant</span><small>Walk forward</small></summary>
-        <div class="mdp-body"><dl>
-          <dt>State</dt><dd>Joint and body motion, base height and orientation, foot contacts, elapsed time, and the previous effort commands.</dd>
-          <dt>Action</dt><dd>Set the effort for each of the eight leg joints.</dd>
-          <dt>Reward</dt><dd>Gain reward for forward progress along the world X-axis. Tilt, rotation, sideways drift, high effort, and abrupt effort changes reduce it.</dd>
-        </dl><div class="mdp-links"><a href="mdp-ant.pdf">Full trace (PDF)</a><a class="rollout-link" href="media/benchmarks.mp4#t=10.8">Watch rollout · 0:10</a></div></div>
-      </details>
-      <details><summary><span>Humanoid</span><small>Walk upright</small></summary>
-        <div class="mdp-body"><dl>
-          <dt>State</dt><dd>Joint and base motion, heading, uprightness, sideways displacement, base height, and left and right foot contacts.</dd>
-          <dt>Action</dt><dd>Send a normalized target to each actuated joint. Hold it for two physics steps.</dd>
-          <dt>Reward</dt><dd>Forward speed earns reward. Heading error, lean, sideways motion or displacement, and a fall below 0.6 m reduce it.</dd>
-        </dl><div class="mdp-links"><a href="mdp-humanoid.pdf">Full trace (PDF)</a><a class="rollout-link" href="media/benchmarks.mp4#t=21">Watch rollout · 0:21</a></div>
-        <p class="mdp-note">For a shorter walkthrough of how ARPG arrives at this reward, read <a href="humanoid-appendix-h.pdf">Appendix H (PDF)</a>.</p></div>
-      </details>
-      <details><summary><span>Franka Reach</span><small>Track a target pose</small></summary>
-        <div class="mdp-body"><dl>
-          <dt>State</dt><dd>Joint positions and velocities, the commanded end-effector pose, position and orientation errors, the previous action, and elapsed time.</dd>
-          <dt>Action</dt><dd>Set joint-position targets for the seven arm joints and two gripper fingers.</dd>
-          <dt>Reward</dt><dd>Reduce the squared position and orientation errors. Joint speed and changes in the commanded targets add to the tracking cost.</dd>
-        </dl><div class="mdp-links"><a href="mdp-franka-reach.pdf">Full trace (PDF)</a><a class="rollout-link" href="media/benchmarks.mp4#t=31.5">Watch rollout · 0:31</a></div></div>
-      </details>
-      <details><summary><span>Franka Lift</span><small>Lift an object to a target</small></summary>
-        <div class="mdp-body"><dl>
-          <dt>State</dt><dd>Arm and gripper joint positions and velocities, object position relative to the base, target position, and the previous action.</dd>
-          <dt>Action</dt><dd>Increment the joint targets at 50 Hz. The two gripper fingers receive the same increment.</dd>
-          <dt>Reward</dt><dd>Bring the object closer to the target and lift it above the height threshold. Dropping it, opening the gripper after lifting, moving joints rapidly, or changing commands abruptly incurs a penalty.</dd>
-        </dl><div class="mdp-links"><a href="mdp-franka-lift.pdf">Full trace (PDF)</a><a class="rollout-link" href="media/benchmarks.mp4#t=42">Watch rollout · 0:42</a></div></div>
-      </details>
-    </div>
+    <p class="kicker"><b>Supplementary material · Section B</b></p>
+    <h2 id="mdp-title">Generated MDPs</h2>
+    <div class="mdp-tabs" role="tablist" aria-label="Benchmark task" hidden></div>
+    <article class="mdp-panel" id="mdp-cartpole">
+      <h3>CartPole</h3>
+      <dl>
+        <dt>Description</dt><dd>A cart can push left or right beneath a freely hinged pole. Keep the pole upright as long as possible. The cart starts within 0.5 m of center and the pole within 0.05 radians of vertical.</dd>
+        <dt>State</dt><dd>Four values describe the system: cart position <i>x</i>, cart velocity, pole angle <i>θ</i> from vertical, and pole angular velocity.</dd>
+        <dt>Action</dt><dd>Apply one continuous horizontal force to the cart, bounded by its actuator’s effort limit. The pole joint is passive.</dd>
+        <dt>Reward</dt><dd>Each step earns one point while both limits hold. If either condition fails, the reward is zero.
+          <div class="mdp-equation"><i>r</i> = 1 if |<i>x</i>| ≤ 3 m and |<i>θ</i>| &lt; 0.5 rad<br><i>r</i> = 0 otherwise</div></dd>
+      </dl>
+      <a class="rollout-link" href="media/benchmarks.mp4#t=0">Watch the CartPole rollout · 0:00</a>
+    </article>
+
+    <article class="mdp-panel" id="mdp-ant">
+      <h3>Ant</h3>
+      <dl>
+        <dt>Description</dt><dd>Coordinate four legs to travel along the world’s positive X-axis. An episode lasts up to 16 seconds and ends early if the base drops below 0.31 m.</dd>
+        <dt>State</dt><dd>Eight joint positions and velocities, base orientation, linear and angular velocity, height, forward speed, four foot-contact flags, elapsed time, and the previous eight effort commands.</dd>
+        <dt>Action</dt><dd>Set one effort command for each of the eight leg joints. The simulator holds these commands between control updates.</dd>
+        <dt>Reward</dt><dd>Forward distance earns reward. Five weighted penalties favor an efficient, stable gait.
+          <div class="mdp-equation"><i>r</i> = 𝟙[<i>h</i> ≥ 0.31] · (<i>v</i><sub>x</sub> Δ<i>t</i> − <i>P</i>)</div>
+          <span class="mdp-key"><i>h</i> is base height in meters. <i>P</i> combines tilt, angular motion, effort, change in effort, and sideways speed. Below the height threshold the reward is zero.</span></dd>
+      </dl>
+      <a class="rollout-link" href="media/benchmarks.mp4#t=10.8">Watch the Ant rollout · 0:10</a>
+    </article>
+
+    <article class="mdp-panel" id="mdp-humanoid">
+      <h3>Humanoid</h3>
+      <dl>
+        <dt>Description</dt><dd>Walk forward along the world’s positive X-axis while staying upright and facing forward. Each episode lasts up to 16 seconds. A base height below 0.6 m counts as a fall.</dd>
+        <dt>State</dt><dd>Joint positions and velocities, base linear and angular velocity, heading error, upright alignment, forward speed, sideways displacement and speed, base height, and contact at each foot.</dd>
+        <dt>Action</dt><dd>Issue a normalized target in [−1, 1] for each actuated joint at 60 Hz. Targets are scaled to each joint’s range and held for two physics steps.</dd>
+        <dt>Reward</dt><dd>Forward speed earns reward. Heading error, lean, sideways displacement or motion, and falling each subtract from it.
+          <div class="mdp-equation"><i>r</i> = <i>v</i><sub>x</sub> − |<i>θ</i>| − (1 − <i>u</i>) − |<i>y</i>| − |<i>v</i><sub>y</sub>| − 𝟙[<i>h</i> &lt; 0.6]</div>
+          <span class="mdp-key"><i>θ</i> is heading error, <i>u</i> is torso alignment with vertical, <i>y</i> is sideways displacement, and <i>h</i> is base height in meters. The final term is 1 on a fall.</span></dd>
+      </dl>
+      <a class="rollout-link" href="media/benchmarks.mp4#t=21">Watch the Humanoid rollout · 0:21</a>
+    </article>
+
+    <article class="mdp-panel" id="mdp-reach">
+      <h3>Franka Reach</h3>
+      <dl>
+        <dt>Description</dt><dd>Track a target position and orientation above a table. The target changes every four seconds during a 12-second episode, so the arm must settle accurately after each change.</dd>
+        <dt>State</dt><dd>Joint positions and velocities, the target pose in the robot’s base frame, position and orientation errors, the previous joint targets, and elapsed time.</dd>
+        <dt>Action</dt><dd>The task description specifies seven arm commands with the gripper fixed. ARPG’s generated vector lists nine joint-position targets, including both finger joints, clamped to their joint limits.</dd>
+        <dt>Reward</dt><dd>Minimize tracking error while keeping joint speeds and changes in successive commands small.
+          <div class="mdp-equation"><i>r</i> = −(Δ<i>t</i>/<i>T</i>) (‖<i>e</i><sub>pos</sub>‖² + ‖<i>e</i><sub>ori</sub>‖² + <i>C</i><sub>vel</sub> + ‖Δ<i>a</i>‖²)</div>
+          <span class="mdp-key">The errors measure position and axis-angle orientation. <i>C</i><sub>vel</sub> sums squared joint speeds normalized by their limits. Δ<i>a</i> is the change in joint targets, Δ<i>t</i> the control interval, and <i>T</i> the episode duration.</span></dd>
+      </dl>
+      <a class="rollout-link" href="media/benchmarks.mp4#t=31.5">Watch the Franka Reach rollout · 0:31</a>
+    </article>
+
+    <article class="mdp-panel" id="mdp-lift">
+      <h3>Franka Lift</h3>
+      <dl>
+        <dt>Description</dt><dd>Grasp a small object on a table, lift it, and move it toward a target that stays fixed during the episode. A drop below approximately −0.05 m ends the trial early.</dd>
+        <dt>State</dt><dd>The 33 entries combine nine joint positions, nine joint velocities, the 3D object position relative to the base, the 3D target position, and the previous nine action entries.</dd>
+        <dt>Action</dt><dd>At 50 Hz, command increments to seven arm-joint targets and a shared increment for the two gripper fingers.</dd>
+        <dt>Reward</dt><dd>Moving closer to the target reduces the position cost. Lifting above the threshold earns a height bonus. Opening the fingers after lifting incurs a penalty.
+          <div class="mdp-equation"><i>r</i> = −‖<i>o</i> − <i>p</i>*‖² + max(0, <i>z</i> − <i>h</i><sub>lift</sub>) − ‖Δ<i>a</i>‖² − <i>C</i><sub>vel</sub> − <i>C</i><sub>drop</sub> − <i>C</i><sub>grip</sub></div>
+          <span class="mdp-key"><i>o</i> and <i>p</i>* are object and target positions, and <i>z</i> is object height. The lift threshold is about 0.04 m. The last four terms penalize changes in commands, joint speed, drops, and finger opening once lifted.</span></dd>
+      </dl>
+      <a class="rollout-link" href="media/benchmarks.mp4#t=42">Watch the Franka Lift rollout · 0:42</a>
+    </article>
   </section>
   <section class="beyond wrap" id="beyond"><div class="section-intro"><p class="kicker"><b>Appendix G</b></p><h2>Beyond robotics</h2><p>These experiments reuse the MDP modeling pipeline with a single coding agent for lightweight environments. Select a figure to inspect the original plots.</p></div>
     <div class="result-grid">
