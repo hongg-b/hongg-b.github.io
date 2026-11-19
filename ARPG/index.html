@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f7f7f0">
-  <meta name="description" content="ARPG at NeurIPS 2026. Watch expert and generated robot policies side by side, explore five new tasks, and see results beyond robotics.">
+  <meta name="description" content="Watch ARPG's robot policies, explore the MDPs it generated for five benchmarks, and see results beyond robotics.">
   <title>ARPG · LLMs as MDP Designers</title>
   <link rel="stylesheet" href="style.css">
   <script src="page.js" defer></script>
@@ -13,7 +13,7 @@
 <a class="skip" href="#demos">Skip to videos</a>
 <header class="header">
   <nav class="wrap"><a href="#top" class="brand" aria-label="ARPG project home"><i aria-hidden="true"></i>ARPG</a>
-    <div class="navlinks"><a href="#demos">Videos</a><a href="#method">Method</a><a href="#beyond">Beyond robotics</a></div>
+    <div class="navlinks"><a href="#demos">Videos</a><a href="#method">Method</a><a href="#mdps">MDPs</a><a href="#beyond">Beyond<span class="nav-qualifier">&nbsp;robotics</span></a></div>
   </nav>
 </header>
 <main id="top">
@@ -54,6 +54,50 @@
   <section class="method wrap" id="method"><div class="method-intro"><p class="kicker"><b>Method</b></p><h2>From a task description to a trained policy</h2>
     <p>ARPG first defines the objective, states, actions, rewards, and constraints of a Markov decision process. Agents check intermediate decisions and repair inconsistencies before separate coding agents build the simulator components used to train the policy.</p></div>
     <figure><a class="plot" href="media/framework.webp" target="_blank" rel="noopener"><img src="media/framework.webp" loading="lazy" width="1552" height="588" alt="Task inputs feed sequential modeling and error correction, followed by parallel configuration agents and policy validation in Isaac Sim"></a><figcaption>Fig. 2 <span>Modeling and implementation phases of ARPG.</span></figcaption></figure>
+  </section>
+  <section class="mdps wrap" id="mdps" aria-labelledby="mdp-title">
+    <div class="mdp-intro"><p class="kicker"><b>Supplementary material · Section B</b></p>
+      <h2 id="mdp-title">Generated MDPs</h2>
+      <p>What does a robot observe, what can it control, and what earns a reward? Explore ARPG’s answers for each benchmark, then follow the original equations in its logbook.</p>
+    </div>
+    <div class="mdp-list">
+      <details open><summary><span>CartPole</span><small>Balance a pole</small></summary>
+        <div class="mdp-body"><dl>
+          <dt>State</dt><dd>Cart position and velocity, pole angle and angular velocity.</dd>
+          <dt>Action</dt><dd>Apply one continuous horizontal force to the cart.</dd>
+          <dt>Reward</dt><dd>Earn 1 for each step the cart stays within 3 m of center and the pole tilts less than 0.5 radians from upright. Otherwise the reward is 0.</dd>
+        </dl><div class="mdp-links"><a href="mdp-cartpole.pdf">Full trace (PDF)</a><a class="rollout-link" href="media/benchmarks.mp4#t=0">Watch rollout · 0:00</a></div></div>
+      </details>
+      <details><summary><span>Ant</span><small>Walk forward</small></summary>
+        <div class="mdp-body"><dl>
+          <dt>State</dt><dd>Joint and body motion, base height and orientation, foot contacts, elapsed time, and the previous effort commands.</dd>
+          <dt>Action</dt><dd>Set the effort for each of the eight leg joints.</dd>
+          <dt>Reward</dt><dd>Gain reward for forward progress along the world X-axis. Tilt, rotation, sideways drift, high effort, and abrupt effort changes reduce it.</dd>
+        </dl><div class="mdp-links"><a href="mdp-ant.pdf">Full trace (PDF)</a><a class="rollout-link" href="media/benchmarks.mp4#t=10.8">Watch rollout · 0:10</a></div></div>
+      </details>
+      <details><summary><span>Humanoid</span><small>Walk upright</small></summary>
+        <div class="mdp-body"><dl>
+          <dt>State</dt><dd>Joint and base motion, heading, uprightness, sideways displacement, base height, and left and right foot contacts.</dd>
+          <dt>Action</dt><dd>Send a normalized target to each actuated joint. Hold it for two physics steps.</dd>
+          <dt>Reward</dt><dd>Forward speed earns reward. Heading error, lean, sideways motion or displacement, and a fall below 0.6 m reduce it.</dd>
+        </dl><div class="mdp-links"><a href="mdp-humanoid.pdf">Full trace (PDF)</a><a class="rollout-link" href="media/benchmarks.mp4#t=21">Watch rollout · 0:21</a></div>
+        <p class="mdp-note">For a shorter walkthrough of how ARPG arrives at this reward, read <a href="humanoid-appendix-h.pdf">Appendix H (PDF)</a>.</p></div>
+      </details>
+      <details><summary><span>Franka Reach</span><small>Track a target pose</small></summary>
+        <div class="mdp-body"><dl>
+          <dt>State</dt><dd>Joint positions and velocities, the commanded end-effector pose, position and orientation errors, the previous action, and elapsed time.</dd>
+          <dt>Action</dt><dd>Set joint-position targets for the seven arm joints and two gripper fingers.</dd>
+          <dt>Reward</dt><dd>Reduce the squared position and orientation errors. Joint speed and changes in the commanded targets add to the tracking cost.</dd>
+        </dl><div class="mdp-links"><a href="mdp-franka-reach.pdf">Full trace (PDF)</a><a class="rollout-link" href="media/benchmarks.mp4#t=31.5">Watch rollout · 0:31</a></div></div>
+      </details>
+      <details><summary><span>Franka Lift</span><small>Lift an object to a target</small></summary>
+        <div class="mdp-body"><dl>
+          <dt>State</dt><dd>Arm and gripper joint positions and velocities, object position relative to the base, target position, and the previous action.</dd>
+          <dt>Action</dt><dd>Increment the joint targets at 50 Hz. The two gripper fingers receive the same increment.</dd>
+          <dt>Reward</dt><dd>Bring the object closer to the target and lift it above the height threshold. Dropping it, opening the gripper after lifting, moving joints rapidly, or changing commands abruptly incurs a penalty.</dd>
+        </dl><div class="mdp-links"><a href="mdp-franka-lift.pdf">Full trace (PDF)</a><a class="rollout-link" href="media/benchmarks.mp4#t=42">Watch rollout · 0:42</a></div></div>
+      </details>
+    </div>
   </section>
   <section class="beyond wrap" id="beyond"><div class="section-intro"><p class="kicker"><b>Appendix G</b></p><h2>Beyond robotics</h2><p>These experiments reuse the MDP modeling pipeline with a single coding agent for lightweight environments. Select a figure to inspect the original plots.</p></div>
     <div class="result-grid">

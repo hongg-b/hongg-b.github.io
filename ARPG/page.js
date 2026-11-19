@@ -71,6 +71,16 @@ for (const selector of selectors) {
 }
 document.querySelector(".switches").hidden = false;
 showReel(location.hash === "#variants" ? "variants" : "benchmarks");
+for (const link of document.querySelectorAll(".rollout-link")) {
+  link.addEventListener("click", event => {
+    if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    showReel("benchmarks");
+    const reel = document.getElementById("benchmarks");
+    reel.querySelector("video").scrollIntoView({block: "start"});
+    playAt(reel, Number(link.hash.slice(3)));
+  });
+}
 document.querySelector(".primary").addEventListener("click", event => {
   event.preventDefault();
   const reel = reels.find(item => !item.hidden);
