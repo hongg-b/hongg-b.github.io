@@ -3,11 +3,33 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f7f7f0">
+  <meta name="theme-color" content="#f8f8f2">
   <meta name="description" content="Watch ARPG's robot policies, explore the MDPs it generated for five benchmarks, and see results beyond robotics.">
   <title>ARPG · LLMs as MDP Designers</title>
-  <link rel="stylesheet" href="style.css?v=full-logbook">
-  <script src="page.js?v=full-logbook" defer></script>
+  <link rel="canonical" href="https://hongg-b.github.io/ARPG/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2316241e'/%3E%3Cpath d='M9 25 15 7h3l-6 18zm6 0 6-18h3l-6 18z' fill='%23ffcf55'/%3E%3C/svg%3E">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ARPG">
+  <meta property="og:title" content="LLMs as MDP Designers: A Dependency-Aware Agentic Framework for Automated Robot Policy Generation">
+  <meta property="og:description" content="Watch ARPG's robot policies, explore the MDPs it generated for five benchmarks, and see results beyond robotics.">
+  <meta property="og:url" content="https://hongg-b.github.io/ARPG/">
+  <meta property="og:image" content="https://hongg-b.github.io/ARPG/media/jumping-ant.jpg">
+  <meta property="og:image:width" content="1160">
+  <meta property="og:image:height" content="520">
+  <meta property="og:image:alt" content="Simulated Ant robots in midair above the Isaac Sim grid">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="LLMs as MDP Designers: A Dependency-Aware Agentic Framework for Automated Robot Policy Generation">
+  <meta name="twitter:description" content="Watch ARPG's robot policies, explore the MDPs it generated for five benchmarks, and see results beyond robotics.">
+  <meta name="twitter:image" content="https://hongg-b.github.io/ARPG/media/jumping-ant.jpg">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"LLMs as MDP Designers: A Dependency-Aware Agentic Framework for Automated Robot Policy Generation","name":"LLMs as MDP Designers: A Dependency-Aware Agentic Framework for Automated Robot Policy Generation",
+   "author":[{"@type":"Person","name":"Hong Je-Gal","url":"https://hongg-b.github.io/"},{"@type":"Person","name":"Jinwoo Kim"},{"@type":"Person","name":"Chan-Bin Yi"},{"@type":"Person","name":"Hyun-Suk Lee"}],
+   "sourceOrganization":{"@type":"Organization","name":"Sejong University"},
+   "datePublished":"2026-11-03","url":"https://hongg-b.github.io/ARPG/","sameAs":"https://arxiv.org/abs/2611.04974",
+   "image":"https://hongg-b.github.io/ARPG/media/jumping-ant.jpg","about":["Robotics","Reinforcement learning","Large language models"]}
+  </script>
+  <link rel="stylesheet" href="style.css?v=polish-1">
+  <script src="page.js?v=polish-1" defer></script>
 </head>
 <body>
 <a class="skip" href="#demos">Skip to videos</a>
@@ -23,10 +45,10 @@
       <h1 id="title">LLMs as <br>MDP Designers<span>.</span></h1>
       <p class="subtitle">A Dependency-Aware Agentic Framework for Automated Robot Policy Generation</p>
       <p class="authors"><a href="https://hongg-b.github.io/">Hong Je-Gal</a>, Jinwoo Kim, Chan-Bin Yi, Hyun-Suk Lee</p>
-      <div class="actions"><a class="primary" href="#demos"><span aria-hidden="true">▶</span> Watch rollouts</a><a class="textlink" href="https://arxiv.org/abs/2611.04974">arXiv <span aria-hidden="true">↗</span></a><a class="textlink" href="https://arxiv.org/pdf/2611.04974">PDF <span aria-hidden="true">↗</span></a></div>
+      <div class="actions"><a class="primary" href="#demos"><span aria-hidden="true">▶</span> Watch rollouts</a><a class="textlink" href="https://arxiv.org/abs/2611.04974">arXiv <span aria-hidden="true">↗</span></a><a class="textlink" href="https://arxiv.org/pdf/2611.04974">PDF <span aria-hidden="true">↗</span></a><a class="textlink" href="#cite">Cite</a></div>
     </div>
     <a class="hero-shot" href="#variants" data-scene="4.3" aria-label="Play the Jumping Ant rollout">
-      <img src="media/jumping-ant.jpg" width="1160" height="520" alt="Simulated Ant robots in midair above the Isaac Sim grid">
+      <img src="media/jumping-ant.jpg" width="1160" height="520" fetchpriority="high" alt="Simulated Ant robots in midair above the Isaac Sim grid">
       <div class="shot-caption"><div><small>Isaac Sim rollout</small><strong>Jumping Ant</strong></div><span class="play" aria-hidden="true">▶</span></div>
     </a>
   </section>
@@ -1359,6 +1381,21 @@ N_{\text{ctrl}} = \frac{T}{\Delta t_c} \in \mathbb{N}</annotation></semantics></
       <details class="study-detail"><summary>See an example of a frame mismatch</summary><p>In one inspected Codex Ant formulation, the observation expressed base velocity in the robot’s frame, while the reward used forward speed along the world X-axis. Once the robot turned, the two could disagree. The formulation left the coordinate conversion unspecified. <a href="arpg-paper.pdf#page=16">Appendix C.1</a></p></details>
     </div><figure><a class="plot" href="debug-locations.webp" target="_blank" rel="noopener"><img src="debug-locations.webp" width="1560" height="1172" loading="lazy" alt="Heatmap of coding-agent debug calls across five tasks and six simulator components. Observation construction dominates Reach and Lift, while Ant concentrates on custom reward code."></a><figcaption>Fig. 4b <span>Debug locations by task. Select the original figure to enlarge it.</span></figcaption></figure></article>
   </div></section>
+  <section class="cite wrap" id="cite" aria-labelledby="cite-title">
+    <div><p class="kicker"><b>Citation</b><span>NeurIPS 2026</span></p><h2 id="cite-title">Cite ARPG</h2>
+      <p>If ARPG or its generated MDPs help your work, please cite the paper.</p>
+      <p class="cite-links"><a href="https://arxiv.org/abs/2611.04974">arXiv 2611.04974 <span aria-hidden="true">↗</span></a></p></div>
+    <div class="bibtex"><div class="bibtex-bar"><span>BibTeX</span><button type="button" class="copy-bib" hidden>Copy</button></div>
+      <pre tabindex="0" aria-label="BibTeX citation"><code id="bibtex">@inproceedings{jegal2026arpg,
+  title     = {LLMs as MDP Designers: A Dependency-Aware Agentic Framework
+               for Automated Robot Policy Generation},
+  author    = {Je-Gal, Hong and Kim, Jinwoo and Yi, Chan-Bin and Lee, Hyun-Suk},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2026},
+  eprint    = {2611.04974},
+  archivePrefix = {arXiv}
+}</code></pre></div>
+  </section>
 </main>
 <dialog class="figure-view" aria-labelledby="figure-name">
   <div class="figure-tools">
@@ -1368,6 +1405,6 @@ N_{\text{ctrl}} = \frac{T}{\Delta t_c} \in \mathbb{N}</annotation></semantics></
   </div>
   <div class="figure-pan" tabindex="0" aria-label="Scrollable figure"><img alt=""></div>
 </dialog>
-<footer><div class="wrap"><span><strong>ARPG</strong> · NeurIPS 2026</span><a href="https://mainlab.kr/">MAIN Lab ↗</a></div></footer>
+<footer><div class="wrap"><span><strong>ARPG</strong> · NeurIPS 2026 · Sejong University</span><span class="footer-links"><a href="#top">Back to top ↑</a><a href="https://mainlab.kr/">MAIN Lab ↗</a></span></div></footer>
 </body>
 </html>
