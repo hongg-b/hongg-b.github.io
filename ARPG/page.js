@@ -74,6 +74,39 @@ showReel(location.hash === "#variants" ? "variants" : "benchmarks");
 const mdpTabs = document.querySelector(".mdp-tabs");
 if (mdpTabs) {
   const panels = [...document.querySelectorAll(".mdp-panel")];
+  const fieldBar = document.querySelector(".trace-fields");
+  const parts = panels.map(panel => [...panel.querySelectorAll(".trace-part")]);
+  let activeTask = 0;
+  let activeField = "Description";
+  const mathHint = document.createElement("p");
+  mathHint.className = "math-hint";
+  mathHint.textContent = "Scroll sideways within long equations to read every term.";
+  function updateMathHint() {
+    const part = parts[activeTask].find(item => item.dataset.field === activeField);
+    const overflow = [...part.querySelectorAll(".trace-math")].some(math => math.scrollWidth > math.clientWidth + 2);
+    if (overflow) part.querySelector(".trace-label").after(mathHint);
+    else mathHint.remove();
+  }
+  const fieldButtons = parts[0].map(part => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.textContent = part.dataset.field;
+    button.addEventListener("click", () => {
+      activeField = part.dataset.field;
+      showField();
+    });
+    fieldBar.append(button);
+    return button;
+  });
+  function showField() {
+    parts[activeTask].forEach((part, i) => {
+      const selected = part.dataset.field === activeField;
+      part.hidden = !selected;
+      fieldButtons[i].setAttribute("aria-pressed", String(selected));
+      fieldButtons[i].setAttribute("aria-controls", part.id);
+    });
+    updateMathHint();
+  }
   const tabs = panels.map(panel => {
     const button = document.createElement("button");
     button.type = "button";
@@ -88,12 +121,14 @@ if (mdpTabs) {
     return button;
   });
   function selectTask(index) {
+    activeTask = index;
     tabs.forEach((button, i) => {
       const selected = i === index;
       button.setAttribute("aria-selected", String(selected));
       button.tabIndex = selected ? 0 : -1;
       panels[i].hidden = !selected;
     });
+    showField();
   }
   tabs.forEach((button, index) => {
     button.addEventListener("click", () => selectTask(index));
@@ -112,6 +147,8 @@ if (mdpTabs) {
   });
   selectTask(0);
   mdpTabs.hidden = false;
+  fieldBar.hidden = false;
+  new ResizeObserver(updateMathHint).observe(fieldBar);
 }
 for (const link of document.querySelectorAll(".rollout-link")) {
   link.addEventListener("click", event => {
@@ -149,7 +186,7 @@ if (typeof figureView.showModal === "function") {
   zoom.addEventListener("click", () => sizeFigure(!pan.classList.contains("enlarged")));
   for (const link of document.querySelectorAll(".plot")) {
     const preview = link.querySelector("img");
-    const name = link.closest(".result")?.querySelector("h3").textContent || "ARPG framework";
+    const name = link.closest(".debug-study") ? "Debug locations by task" : link.closest(".result")?.querySelector("h3").textContent || "ARPG framework";
     link.setAttribute("aria-label", "Enlarge figure: " + name);
     link.setAttribute("aria-haspopup", "dialog");
     link.addEventListener("click", event => {
